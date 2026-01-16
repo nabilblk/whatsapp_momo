@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    container_name: wa-api
+    ports:
+      - "8080:8080"
+    environment:
+      - API_HOST=0.0.0.0
+      - API_PORT=8080
+      - API_DB_PATH=/data/promo.db
+      - RATE_LIMIT_PER_MINUTE=5
+      - RATE_LIMIT_PER_HOUR=20
+      - MOCK_TELECOM_DELAY_MS=500
+      - MOCK_ANTIFRAUD_ENABLED=true
+      - DEFAULT_LANGUAGE=fr
+    volumes:
+      - api_data:/data
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:8080/api/v1/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - whatsapp-net
+
+  bridge:
+    build:
+      context: .
+      dockerfile: bridge/Dockerfile
+    container_name: wa-bridge
+    environment:
+      - BRIDGE_API_URL=http://api:8080
+      - BRIDGE_SESSION_PATH=/data/whatsapp.db
+      - BRIDGE_QR_TERMINAL=true
+      - DEFAULT_LANGUAGE=fr
+      - LOG_LEVEL=INFO
+    volumes:
+      - bridge_data:/data
+    depends_on:
+      api:
+        condition: service_healthy
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    networks:
+      - whatsapp-net
+
+networks:
+  whatsapp-net:
+    driver: bridge
+
+volumes:
+  api_data:
+    driver: local
+  bridge_data:
+    driver: local

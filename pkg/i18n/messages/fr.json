@@ -1,0 +1,16 @@
+{
+    "welcome": "Bienvenue ! Envoyez votre code promo pour recevoir votre recompense.",
+    "help": "Envoyez simplement votre code promo (ex: PROMO2024) pour l'utiliser.",
+    "promo_success_data": "Felicitations ! %s de data a ete ajoute a votre compte.",
+    "promo_success_credit": "Felicitations ! %s de credit ajoute a votre compte.",
+    "promo_success_generic": "Felicitations ! %s %s a ete ajoute a votre compte.",
+    "promo_expired": "Ce code promo a expire le %s.",
+    "promo_expired_simple": "Ce code promo a expire.",
+    "promo_used": "Ce code a deja ete utilise.",
+    "promo_invalid": "Code promo invalide. Verifiez et reessayez.",
+    "promo_not_found": "Code non reconnu.",
+    "rate_limited": "Trop de tentatives. Veuillez patienter %d minute(s).",
+    "fraud_blocked": "Cette transaction a ete bloquee pour des raisons de securite.",
+    "error_generic": "Une erreur s'est produite. Veuillez reessayer plus tard.",
+    "reward_failed": "Echec de l'attribution de la recompense. Veuillez reessayer."
+}

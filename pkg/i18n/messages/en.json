@@ -1,0 +1,16 @@
+{
+    "welcome": "Welcome! Send your promo code to receive your reward.",
+    "help": "Simply send your promo code (e.g., PROMO2024) to redeem it.",
+    "promo_success_data": "Congratulations! %s of data has been added to your account.",
+    "promo_success_credit": "Congratulations! %s credit added to your account.",
+    "promo_success_generic": "Congratulations! %s %s has been added to your account.",
+    "promo_expired": "This promo code expired on %s.",
+    "promo_expired_simple": "This promo code has expired.",
+    "promo_used": "This code has already been used.",
+    "promo_invalid": "Invalid promo code. Please check and try again.",
+    "promo_not_found": "Code not recognized.",
+    "rate_limited": "Too many attempts. Please wait %d minute(s).",
+    "fraud_blocked": "This transaction has been blocked for security reasons.",
+    "error_generic": "An error occurred. Please try again later.",
+    "reward_failed": "Failed to deliver reward. Please try again."
+}

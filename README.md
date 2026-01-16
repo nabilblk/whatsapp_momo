@@ -166,6 +166,51 @@ To ensure messages always come from your registered business number, migrate to 
 
 The API service in this POC is designed to be reusable - only the bridge component needs to be replaced with an official API integration.
 
+## Production Without Official API (Not Recommended)
+
+It is technically possible to run whatsmeow-based solutions in production without the official WhatsApp Business API. However, this approach comes with significant risks and is **not recommended** for business-critical applications.
+
+### What Would Be Needed
+
+To make this POC more production-ready without the official API:
+
+- **Database**: Migrate from SQLite to PostgreSQL or MySQL for better concurrency
+- **Reconnection Logic**: Implement exponential backoff for handling disconnections
+- **Outgoing Rate Limiting**: Throttle outgoing messages to avoid detection
+- **Session Persistence**: Robust session management across restarts
+- **Monitoring**: Add health checks, metrics, and alerting for connection status
+- **Multi-instance**: Consider message queuing for horizontal scaling
+
+### Risks and Disclaimers
+
+**Account Ban Risk**: Using unofficial libraries like whatsmeow violates WhatsApp's Terms of Service. Accounts can be permanently banned without warning. This risk increases with:
+- High message volumes
+- Automated/bot-like behavior patterns
+- User reports
+
+**No Official Support**: WhatsApp does not provide support for unofficial integrations. When things break, you're on your own.
+
+**Protocol Changes**: WhatsApp can change their protocol at any time, breaking whatsmeow functionality. Updates may take days or weeks to be released by the community.
+
+**Legal/Compliance**: Unofficial API usage may violate regulations in some jurisdictions, especially for financial or healthcare applications.
+
+**Sender Number Issues**: As documented above, messages may appear to come from relay numbers rather than your authenticated number.
+
+### When to Use the Official API Instead
+
+Choose the official WhatsApp Business API if you need:
+
+- Guaranteed message delivery with SLA
+- Consistent sender identity (your business number)
+- High message volumes (thousands per day)
+- Business-critical reliability
+- Compliance with regulations (GDPR, financial services, etc.)
+- Official support and documentation
+
+### Disclaimer
+
+This POC is provided for **educational and testing purposes only**. The authors do not endorse using unofficial WhatsApp libraries for production systems or any use that violates WhatsApp's Terms of Service. Use at your own risk.
+
 ## License
 
 MIT
